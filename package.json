@@ -1,0 +1,25 @@
+{
+  "name": "wonderpets",
+  "version": "1.0.0",
+  "description": "takeaway work for second interview",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JIMMYOOOPS/wonderpets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JIMMYOOOPS/wonderpets/issues"
+  },
+  "homepage": "https://github.com/JIMMYOOOPS/wonderpets#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "ts-node": "^10.9.1"
+  }
+}
