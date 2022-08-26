@@ -19,3 +19,8 @@ takeaway work for second interview
    2. 程式架構
    3. api 的規格與範例
    4. 整個過程的研究心得
+      1. Typescript
+         1. Type as a system providing syntax + features and design patterns
+         2. Still runs script as javascript in node.js runtime except it compiles .ts files to .js files
+         3. Using interface in defining objects assist on catching errors during development
+      
