@@ -1,25 +1,74 @@
-import axios from 'axios';
+import express from 'express';
+import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { DateTimeResolver } from 'graphql-scalars';
 
-interface todo {
-  id: number;
-  title: string;
-  completed: boolean;
+const users = [
+  {
+    "id": "",
+    "account": "",
+    "password": "",
+    "name": "",
+    "birthday": ""
+  }, 
+  {
+    "id": "",
+    "account": "",
+    "password": "",
+    "name": "",
+    "birthday": ""
+  },
+  {
+    "id": "",
+    "account": "",
+    "password": "",
+    "name": "",
+    "birthday": ""
+  }
+]
+
+async function startApolloServer(){
+  const resolvers = {
+    Query: {
+      users: () => users,
+    },
+    DateTime: DateTimeResolver,
+  };
+  
+  const typeDefs = gql `
+  type User {
+    id: ID
+    account: String
+    password: String
+    userName: String
+    birthday: DateTime
+  }
+  
+  type Query {
+    users: [User]
+  }
+  
+  scalar DateTime
+  `;
+
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    csrfPrevention: true,
+    cache: 'bounded',
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    ],
+  });
+  const app = express();
+  const port = 3000;
+
+  await server.start();
+  server.applyMiddleware({ app });
+  
+  app.listen({ port }, () =>
+    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
+  );
 }
 
-axios.get('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => {
-    const todo = response.data as todo;
-
-    const id = todo.id;
-    const title = todo.title;
-    const completed = todo.completed;
-    logTodo(id, title, completed);
-  });
-
-  const logTodo = (id: number, title: string, completed: boolean) => {
-    console.log(`
-    The Todo with ID: ${id}
-    Has a title of ${title}
-    The current status is ${completed}
-  `);
-  }
+startApolloServer();

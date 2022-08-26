@@ -1,4 +1,5 @@
 # wonderpets
+
 takeaway work for second interview
 
 # 作業 - 實作 GraphQL API server
@@ -22,5 +23,8 @@ takeaway work for second interview
       1. Typescript
          1. Type as a system providing syntax + features and design patterns
          2. Still runs script as javascript in node.js runtime except it compiles .ts files to .js files
-         3. Using interface in defining objects assist on catching errors during development
-      
+         3. Types
+            1. Primitive Types: number, string, boolean, symbol, viod, null, undefined.
+            2. Object Types: functions, arrays, classes, objects
+            3. Type annotations and inferences: declaring the annotation of each varible declared.
+         4. Using interface in defining objects assist on catching errors during development
