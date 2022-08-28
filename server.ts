@@ -1,56 +1,10 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { DateTimeResolver } from 'graphql-scalars';
-
-const users = [
-  {
-    "id": "",
-    "account": "",
-    "password": "",
-    "name": "",
-    "birthday": ""
-  }, 
-  {
-    "id": "",
-    "account": "",
-    "password": "",
-    "name": "",
-    "birthday": ""
-  },
-  {
-    "id": "",
-    "account": "",
-    "password": "",
-    "name": "",
-    "birthday": ""
-  }
-]
+import { resolvers } from './src/resolvers/resolver';
+import { typeDefs } from './src/typedefs/typedef';
 
 async function startApolloServer(){
-  const resolvers = {
-    Query: {
-      users: () => users,
-    },
-    DateTime: DateTimeResolver,
-  };
-  
-  const typeDefs = gql `
-  type User {
-    id: ID
-    account: String
-    password: String
-    userName: String
-    birthday: DateTime
-  }
-  
-  type Query {
-    users: [User]
-  }
-  
-  scalar DateTime
-  `;
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -65,9 +19,8 @@ async function startApolloServer(){
 
   await server.start();
   server.applyMiddleware({ app });
-  
-  app.listen({ port }, () =>
-    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
+  app.listen( port , () =>
+    console.log(`🚀 ApolloServer running on end point ${port}${server.graphqlPath}`)
   );
 }
 

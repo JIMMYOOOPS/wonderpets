@@ -26,5 +26,9 @@ takeaway work for second interview
          3. Types
             1. Primitive Types: number, string, boolean, symbol, viod, null, undefined.
             2. Object Types: functions, arrays, classes, objects
-            3. Type annotations and inferences: declaring the annotation of each varible declared.
+            3. Tuple: records the values opposing to keys sets in an array([number, string, date]) form which is distinct from an array.
+            4. Type annotations and inferences: declaring the annotation of each varible declared.
+               1. Timing for annotations: 1) varible that returns 'any' as a type. 2)Delayed initialization 3)Inference failing
          4. Using interface in defining objects assist on catching errors during development
+      2. GraphQL
+         1.

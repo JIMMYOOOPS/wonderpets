@@ -96,7 +96,7 @@ function startApolloServer() {
                     _a.sent();
                     server.applyMiddleware({ app: app });
                     app.listen({ port: port }, function () {
-                        return console.log("\uD83D\uDE80 Server ready at http://localhost:".concat(port).concat(server.graphqlPath));
+                        return console.log("\uD83D\uDE80 ApolloServer running on end point ".concat(port).concat(server.graphqlPath));
                     });
                     return [2 /*return*/];
             }
