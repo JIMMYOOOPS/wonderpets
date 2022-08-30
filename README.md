@@ -29,6 +29,7 @@ takeaway work for second interview
             3. Tuple: records the values opposing to keys sets in an array([number, string, date]) form which is distinct from an array.
             4. Type annotations and inferences: declaring the annotation of each varible declared.
                1. Timing for annotations: 1) varible that returns 'any' as a type. 2)Delayed initialization 3)Inference failing
-         4. Using interface in defining objects assist on catching errors during development
+         4. Interface: Using interface in defining new types (interface Car {...}) objects assist on catching errors during development
       2. GraphQL
-         1.
+         1. Queries:
+         2. Mutations:

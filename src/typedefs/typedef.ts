@@ -1,28 +1,39 @@
 import { gql } from 'apollo-server-express';
+import { User, LoginUser } from '../../src/User';
 
-  const typeDefs = gql `
+const typeDefs = gql`
   type User {
     id: ID
     account: String
-    password: String
+    hashpassword: String
     userName: String
     birthday: DateTime
   }
-  
+  type UserInfo {
+    account: String
+    userName: String
+    birthday: DateTime
+  }
+
+  type LoginUser {
+    user: UserInfo
+    accessToken: String
+  }
+
   type Query {
     user(id: ID): User
     users: [User]
   }
-  
+
   type Token {
     token: String
   }
 
   type Mutation {
-    login(account: String!, password: String!): User
+    login(account: String!, password: String!): LoginUser
   }
 
   scalar DateTime
-  `;
+`;
 
-  export { typeDefs }
+export { typeDefs };
