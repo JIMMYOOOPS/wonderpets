@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { resolvers } from './src/resolvers/resolver';
 import { typeDefs } from './src/typedefs/typedef';
+import { getUser } from './util/util';
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,10 @@ async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }) => {
+      let token = req.headers.authorization || '';
+      return getUser(token);
+    },
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],

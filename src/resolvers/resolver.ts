@@ -1,14 +1,16 @@
 import { users } from '../../util/importusers';
-import { User, LoginUser, TOKEN_SECRET, TOKEN_EXPIRE } from '../../src/User';
+import { User, TOKEN_SECRET, TOKEN_EXPIRE } from '../../src/User';
 import { DateTimeResolver } from 'graphql-scalars';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 const resolvers = {
   Query: {
     users: () => users,
+    me: async (parent: null, args: null, context: String) => {
+      return context;
+    },
   },
   Mutation: {
-    // me: () => {},
     login: async (
       parent: string,
       { account, password }: { account: string; password: string },

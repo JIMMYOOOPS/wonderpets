@@ -9,6 +9,7 @@ const typeDefs = gql`
     userName: String
     birthday: DateTime
   }
+
   type UserInfo {
     account: String
     userName: String
@@ -23,6 +24,7 @@ const typeDefs = gql`
   type Query {
     user(id: ID): User
     users: [User]
+    me: UserInfo
   }
 
   type Token {
