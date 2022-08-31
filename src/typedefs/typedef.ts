@@ -1,9 +1,8 @@
 import { gql } from 'apollo-server-express';
-import { User, LoginUser } from '../../src/User';
 
 const typeDefs = gql`
   type User {
-    id: ID
+    id: Int
     account: String
     hashpassword: String
     userName: String
@@ -11,28 +10,25 @@ const typeDefs = gql`
   }
 
   type UserInfo {
+    id: Int
     account: String
     userName: String
     birthday: DateTime
   }
 
-  type LoginUser {
+  type UserLogin {
     user: UserInfo
     accessToken: String
   }
 
   type Query {
-    user(id: ID): User
+    user(id: Int): UserInfo
     users: [User]
     me: UserInfo
   }
 
-  type Token {
-    token: String
-  }
-
   type Mutation {
-    login(account: String!, password: String!): LoginUser
+    login(account: String!, password: String!): UserLogin
   }
 
   scalar DateTime

@@ -1,55 +1,40 @@
 import { users } from '../../util/importusers';
-import { User, TOKEN_SECRET, TOKEN_EXPIRE } from '../../src/User';
+import { User } from '../../src/User';
+import {
+  TOKEN_SECRET,
+  TOKEN_EXPIRE,
+  checkId,
+  checkAccount,
+  checkPassword,
+} from '../../util/util';
 import { DateTimeResolver } from 'graphql-scalars';
-import bcrypt from 'bcrypt';
+
 import jwt from 'jsonwebtoken';
 const resolvers = {
   Query: {
+    user: (parent: null, { id }: { id: number }) => {
+      let data: User | undefined;
+      data = checkId(users, id);
+      return data;
+    },
     users: () => users,
+    //Token is decrypted at context and user information is recieved
     me: async (parent: null, args: null, context: String) => {
       return context;
     },
   },
   Mutation: {
     login: async (
-      parent: string,
-      { account, password }: { account: string; password: string },
-      req: string
+      parent: null,
+      { account, password }: { account: string; password: string }
     ) => {
       let data: number | undefined;
-      function checkAccount(users: User[]) {
-        const result = validate(users);
-        function validate(users: User[]) {
-          for (let i = 0; i < users.length; i++) {
-            if (users[i].account === account) {
-              return i;
-            } else {
-              return undefined;
-            }
-          }
-        }
-        if (typeof result !== 'number') {
-          throw new Error('the account does not exist.');
-        }
-        return result;
-      }
-
-      data = checkAccount(users);
-
-      async function checkPassword(data: number) {
-        const passwordCompare = await bcrypt.compare(
-          password,
-          users[data].hashPassword
-        );
-        if (!passwordCompare) {
-          throw new Error('the password is incorrect.');
-        }
-      }
-
-      checkPassword(data);
+      data = checkAccount(users, account);
+      checkPassword(data, password);
 
       const accessToken = jwt.sign(
         {
+          id: users[data].id,
           account: users[data].account,
           userName: users[data].userName,
           birthday: users[data].birthday,
@@ -59,6 +44,7 @@ const resolvers = {
       );
       const result = {
         user: {
+          id: users[data].id,
           account: users[data].account,
           userName: users[data].userName,
           birthday: users[data].birthday,
