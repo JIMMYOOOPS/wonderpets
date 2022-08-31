@@ -50,4 +50,18 @@ class UserLogin {
   }
 }
 
-export { User, UserLogin, TOKEN_SECRET, TOKEN_EXPIRE };
+class UserInfo {
+    id: number;
+    account: string;
+    userName: string;
+    birthday: Date;
+  constructor() {
+      this.id= 0,
+      this.account= '',
+      this.userName= '',
+      this.birthday= new Date(),
+  }
+}
+
+
+export { User, UserLogin, UserInfo, TOKEN_SECRET, TOKEN_EXPIRE };

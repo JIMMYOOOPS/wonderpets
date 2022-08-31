@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 
 import { users } from './importusers';
-import { User } from '../src/User';
+import { User, UserInfo } from '../src/User';
 
 dotenv.config({ path: './.env' });
 

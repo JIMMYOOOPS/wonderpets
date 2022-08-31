@@ -1,11 +1,13 @@
 import { users } from '../../util/importusers';
 import { User } from '../../src/User';
+import { Request } from 'express-serve-static-core';
 import {
   TOKEN_SECRET,
   TOKEN_EXPIRE,
   checkId,
   checkAccount,
   checkPassword,
+  getUser,
 } from '../../util/util';
 import { DateTimeResolver } from 'graphql-scalars';
 
@@ -19,8 +21,10 @@ const resolvers = {
     },
     users: () => users,
     //Token is decrypted at context and user information is recieved
-    me: async (parent: null, args: null, context: String) => {
-      return context;
+    me: async (parent: null, args: null, req: Request) => {
+      const token = req.headers.authorization || '';
+      const user = await getUser(token);
+      return user;
     },
   },
   Mutation: {

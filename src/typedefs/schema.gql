@@ -1,0 +1,31 @@
+type User {
+  id: Int
+  account: String
+  hashpassword: String
+  userName: String
+  birthday: DateTime
+}
+
+type UserInfo {
+  id: Int
+  account: String
+  userName: String
+  birthday: DateTime
+}
+
+type UserLogin {
+  user: UserInfo
+  accessToken: String
+}
+
+type Query {
+  user(id: Int): UserInfo
+  users: [User]
+  me: UserInfo
+}
+
+type Mutation {
+  login(account: String!, password: String!): UserLogin
+}
+
+scalar DateTime
