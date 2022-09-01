@@ -6,9 +6,7 @@ spectaql:
 introspection:
   removeTrailingPeriodFromDescriptions: false
   schemaFile: ./src/typedefs/schema.gql
-  # schemaFile: ./src/typedef.ts
   metadataFile: ./util/userdatabase.json
-  # dynamicExamplesProcessingModule: ./examples/customizations/examples
   queryNameStrategy: capitalizeFirst
   fieldExpansionDepth: 2
 
@@ -21,7 +19,6 @@ extensions:
 info:
   title: WonderPet GraphQL API Reference
   description: Takeaway Homework creating a server via Node.js + Typescript + apollo-server
-  # termsOfService: https://www.example.com/terms
   contact:
     name: Jimmy
     url: https://github.com/JIMMYOOOPS/wonderpets
@@ -29,17 +26,8 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  # x-introItems:
-  #   - title: Important thing 1
-  #     description: Some important stuff we wanted you to know. Supports `markdown`
 
 servers:
-  # - url: https://staging.example.com/graphql
-  #   description: Staging
   - url: http://localhost:3000/graphql
     description: Production
     production: true
-    # headers:
-    #   - name: Authorization
-    #     example: Bearer <YOUR_TOKEN_HERE>
-    #     comment: Your foo from bar
