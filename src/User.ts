@@ -31,37 +31,4 @@ class User {
   }
 }
 
-class UserLogin {
-  user: {
-    id: number;
-    account: string;
-    userName: string;
-    birthday: Date;
-  };
-  accessToken: string;
-  constructor() {
-    this.user = {
-      id: 0,
-      account: '',
-      userName: '',
-      birthday: new Date(),
-    };
-    this.accessToken = '';
-  }
-}
-
-class UserInfo {
-    id: number;
-    account: string;
-    userName: string;
-    birthday: Date;
-  constructor() {
-      this.id= 0,
-      this.account= '',
-      this.userName= '',
-      this.birthday= new Date(),
-  }
-}
-
-
-export { User, UserLogin, UserInfo, TOKEN_SECRET, TOKEN_EXPIRE };
+export { User, TOKEN_SECRET, TOKEN_EXPIRE };

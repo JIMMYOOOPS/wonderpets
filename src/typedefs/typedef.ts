@@ -4,7 +4,7 @@ const typeDefs = gql`
   type User {
     id: Int
     account: String
-    hashpassword: String
+    hashPassword: String
     userName: String
     birthday: DateTime
   }
