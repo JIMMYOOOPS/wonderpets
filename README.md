@@ -15,6 +15,8 @@ Takeaway Homework for Second Interview
    4. The project can be initiated via the root folder. `npm start` (runs command `ts-node server.ts`)
    5. Finally, once the server is initiated the endpoint can be tested via http://localhost:3000/graphql.
    6. Requested endpoints for `login()` and `me()` can be tested using the graphql playground.
+      1. For testing purposes, the required account and password for `login()` can be found in `user.json` to retrieve the token while user logs in. Passwords are hashed in the `userdatabase.json` file.
+      2. Once the token is retrieved from `login()`, `me()` can be reached by adding `'Bearer'+token` to the header.
 
 2. 程式架構
 
